@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listeamis index{% endblock %}
+
+{% block body %}
+
+
+<div class="header_section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div><a href="index.html"><img src="{{ asset('images/logo.png') }}"></a></div>
+            </div>
+            <div class="col-md-8">
+                <div class="menu_text">
+                    <ul>
+                        <li class="last">Log in / Register</li>
+                        <li class="last"><a href="#"><img src="{{ asset('images/search-icon.png') }}"></a></li>
+                        <li class="active">
+                            <div id="myNav" class="overlay">
+                                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                                <div class="overlay-content">
+                                    <a href="index.html">Home</a>
+                                    <a href="about.html">About</a>
+                                    <a href="gallery.html">Gallery</a>
+                                    <a href="contact.html">Contact</a>
+                                </div>
+                            </div>
+                            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+                </div>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id_utl</th>
+                <th>Idami</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for listeami in listeamis %}
+            <tr>
+                <td>{{ listeami.id }}</td>
+                <td>{{ listeami.idUtl }}</td>
+                <td>{{ listeami.idami }}</td>
+                <td>
+                    <a href="{{ path('listeamis_delete', {'id': listeami.id}) }}">delete</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

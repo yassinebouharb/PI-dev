@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Listeamis{% endblock %}
+
+{% block body %}
+    <h1>Edit Listeamis</h1>
+
+    {{ include('listeamis/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('listeamis_index') }}">back to list</a>
+
+    {{ include('listeamis/_delete_form.html.twig') }}
+{% endblock %}

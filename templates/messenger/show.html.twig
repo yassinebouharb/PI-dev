@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Messenger{% endblock %}
+
+{% block body %}
+    <h1>Messenger</h1>
+<table class="table">
+    <tbody>
+    <tr>
+        <th>Id</th>
+        <td>{{ messenger.id }}</td>
+    </tr>
+    <tr>
+        <th>Id_exp</th>
+        <td>{{ messenger.idExp }}</td>
+    </tr>
+    <tr>
+        <th>Id_recp</th>
+        <td>{{ messenger.idRecp }}</td>
+    </tr>
+    <tr>
+        <th>Message</th>
+        <td>{{ messenger.message }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="{{ path('messenger_index') }}">back to list</a>
+
+<div class="header_section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div><a href="index.html"><img src="images/logo.png"></a></div>
+            </div>
+            <div class="col-md-8">
+                <div class="menu_text">
+                    <ul>
+                        <li class="last">Log in / Register</li>
+                        <li class="last"><a href="#"><img src="images/search-icon.png"></a></li>
+                        <li class="active">
+                            <div id="myNav" class="overlay">
+                                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                                <div class="overlay-content">
+                                    <a href="index.html">Home</a>
+                                    <a href="about.html">About</a>
+                                    <a href="gallery.html">Gallery</a>
+                                    <a href="contact.html">Contact</a>
+                                </div>
+                            </div>
+                            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+                </div>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
