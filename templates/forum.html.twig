@@ -1,0 +1,73 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Post{% endblock %}
+
+
+{% block body %}
+    {{include ('head.html.twig')  }}
+    <link rel="stylesheet" href="  {{ asset('nicepage.css') }}" media="screen">
+
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link rel="canonical" href="{{ asset('index.html') }}">
+    <link rel="stylesheet" href=" {{ asset('forum.css') }}" media="screen">
+
+
+
+    <section class="u-align-center u-clearfix  u-section-2" id="sec-44be">
+        <form class="d-flex" action="recherche" method="post">
+            <input class="form-control me-2" type="search" placeholder="Search" name="recherche" aria-label="Search" aria-label="Serch">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <h2 class="u-text u-text-1"></h2>
+            <p class="u-text u-text-2">Posez vos questions</p>
+
+            {% for post in posts %}
+
+                <div class="u-accordion u-expanded-width u-faq u-spacing-10 u-accordion-1">
+                <div class="u-accordion-item">
+            <a class="u-accordion-link u-active-palette-2-light-2 u-button-style u-palette-1-dark-1 u-radius-50 u-accordion-link-2" id="link-accordion-854e" aria-controls="accordion-854e" aria-selected="false">
+                <span class="u-accordion-link-text">{{ post.titres }} {% if post.solution == 1%}   <img src="{{ asset('images/9.svg') }}" alt="" /> {% endif %} </span><span class="u-accordion-link-icon u-icon u-text-palette-1-light-2 u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 448 448" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-7f79"></use></svg><svg class="u-svg-content" id="svg-7f79" style=""><path d="m272 184c-4.417969 0-8-3.582031-8-8v-176h-80v176c0 4.417969-3.582031 8-8 8h-176v80h176c4.417969 0 8 3.582031 8 8v176h80v-176c0-4.417969 3.582031-8 8-8h176v-80zm0 0"></path></svg></span>
+            </a>
+            <div class="u-accordion-pane u-container-style u-opacity u-opacity-0 u-white u-accordion-pane-2" id="accordion-854e" aria-labelledby="link-accordion-854e">
+                <div class="u-container-layout u-container-layout-2">
+                    <div class="fr-view u-clearfix u-rich-text u-text">
+                        <p>{{ post.message }}  <br> <br><a href=" {{ path('post_show', {'id': post.id}) }}"><img src="{{ asset('images/11.svg') }}" alt="" style="width: 50px;height: 50px;"/>
+                             </a>    <a href=" {{ path('messenger_new', {'id': post.idUtl}) }}"> <img style="width: 50px;height: 50px;"src="{{ asset('images/chat.svg') }}" alt=""   />&nbsp;
+
+                                </a></p>
+                    </div>
+                </div>
+
+            </div>
+
+<br> <br>
+        </div></div>
+            {% endfor %}  </div>
+    </section>
+<section class="u-align-center u-clearfix u-gradient u-section-2" id="sec-9910">
+            <div class="u-clearfix u-sheet u-sheet-1">
+                <div class="u-form u-form-1">
+
+                    <form action="new" method="POST" style="padding: 50px;" >
+                        <div class="u-form-email u-form-group">
+
+                            <input type="text" placeholder="titre"  name="titre" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" >
+                        </div>
+                        <div class="u-form-group u-form-message">
+
+                            <textarea placeholder="message" rows="8" cols="100" name="message" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" ></textarea>
+                        </div>
+
+
+                            <input type="submit" value="submit" class="u-btn u-btn-round u-btn-submit u-button-style u-radius-50">
+
+
+
+                    </form>
+                </div>
+            </div>
+            </div>
+    </section>
+    {{include ('footer.html.twig')  }}
+{% endblock %}

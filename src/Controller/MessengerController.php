@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Messenger;
+use App\Entity\Post;
 use App\Form\MessengerType;
 use App\Repository\MessengerRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,14 +29,14 @@ class MessengerController extends AbstractController
     /**
      * @Route("/new", name="messenger_new", methods={"GET","POST"})
      */
-    public function new(Request $request,MessengerRepository $messengerRepository): Response
+    public function new(Request $request,MessengerRepository $messengerRepository, Post $post): Response
     {
         $messenger = new Messenger();
         $form = $this->createForm(MessengerType::class, $messenger);
         $form->handleRequest($request);
 
         $messenger->setIdExp(1);
-        $messenger->setIdRecp(2);
+        $messenger->setIdRecp($post->getId());
         $messenger->setDatee(new \DateTime('@'.strtotime('now')));
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -47,7 +48,7 @@ class MessengerController extends AbstractController
 
         return $this->render('messenger/new.html.twig', [
             'messenger' => $messenger,
-            'messengers' => $messengerRepository->findByidexp(1,2),
+            'messengers' => $messengerRepository->findByidexp(1,$post->getId()),
             'form' => $form->createView(),
         ]);
     }

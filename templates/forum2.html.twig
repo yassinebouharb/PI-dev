@@ -1,0 +1,67 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Post{% endblock %}
+
+
+{% block body %}
+    <link rel="stylesheet" href="  {{ asset('nicepage.css') }}" media="screen">
+
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link rel="canonical" href="{{ asset('index.html') }}">
+    <link rel="stylesheet" href=" {{ asset('forum.css') }}" media="screen">
+
+
+
+    {{ include('head.html.twig')  }}
+    <section class="u-align-center u-border-4 u-border-grey-75 u-clearfix u-gradient u-section-1" id="sec-002b">
+
+            <div class="fr-view u-align-center u-clearfix u-rich-text u-text u-text-1">
+                <h1 style="text-align: left;">
+                    <span style="line-height: 2.0;">{{ post.titres }}</span>
+                </h1>
+                <p style="text-align: left;">
+                    <span style="line-height: 2.0;">{{ post.message }}  <br>    <br>   {{ post.datepost ? post.datepost|date('Y-m-d H:i:s') : '' }}</span>
+                </p>
+            </div>
+
+    </section>
+    <section class="u-align-center u-clearfix u-gradient u-section-2" id="sec-0c0d">
+    {% for reaction in reactions %}
+
+            <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
+                <h6 style="text-align: left;">
+                    <span style="line-height: 2.0;"> {{ reaction.idUtli }} </span>
+                    <span style="line-height: 2.0;"> {{ reaction.message }}</span>
+                    {{ include('reaction/_delete_form.html.twig') }}
+                </h6>
+
+        </div>
+
+    {% endfor %}
+    </section>
+    <section class="u-align-center u-clearfix u-gradient u-section-3" id="sec-bf0e">
+        <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+
+
+            <div class="u-form u-form-1">
+                <form action="../reaction/new" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
+
+                    <input  type="text" name="id" value="{{ post.id }}" hidden >
+                    <div class="u-form-group u-form-message u-form-group-2">
+                        <label for="message-6797" class="u-form-control-hidden u-label">Address</label>
+                        <textarea placeholder="Address" rows="4" cols="50" id="message-6797" name="message" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required=""></textarea>
+                    </div>
+                    <div class="u-align-left u-form-group u-form-submit u-form-group-3">
+
+                        <input type="submit" value="submit" class="u-btn u-btn-round u-btn-submit u-button-style u-radius-50">
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </section>
+
+
+    {{include ('footer.html.twig')  }}
+{% endblock %}
